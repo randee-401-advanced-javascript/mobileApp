@@ -59,13 +59,12 @@ export default function App() {
     console.log('LOCATION', location);
     console.log('LATITUDE', lat);
     console.log('LONGITUDE', long);
-    console.log('URL', url);
 
 
   return (
     <View style={styles.container}>
       <Text>Mermaids and Unicorns</Text>
-      <Text>You're latitude and longitude is  </Text>
+      
       <StatusBar style="auto" />
     </View>
   );
