@@ -26,7 +26,8 @@ export default function App() {
     const [location, setLocation] = useState({});
     const [lat, setLat] = useState();
     const [long, setLong] = useState();
-    useEffect( async () => {
+    const [url, setUrl] = useState();
+    useEffect( () => {
        (async () => {
         let { status } = await Location.requestPermissionsAsync();
         if (status !== 'granted') {
@@ -35,11 +36,12 @@ export default function App() {
   
         let location = await Location.getCurrentPositionAsync({});
         setLocation(location.coords);
-        setLat(location.coords.latitude);
-        setLong(location.coords.longitude);
+        setLat(location.coords.latitude.toFixed(4));
+        setLong(location.coords.longitude.toFixed(4));
+        let thisURl = await `http://hotline.whalemuseum.org/api.json?near=${lat},${long}&radius=1&limit=5`
+        setUrl( thisURL)
       })();
-      let url = 
-      let res = await 
+ 
 
     }, []);
   
@@ -52,42 +54,21 @@ export default function App() {
     }
 
 
-    // const getLocation = async() => {
-    //   let currentLocation = await Location.getCurrentPositionAsync({});
-    //   setLocation({currentLocation});
-
-    //   console.log('CURRENT LOCATION', currentLocation);
-    // }
-
     
-  
-    // const forRealGetPermissions = async () => {
-    //   const { status }  = await Permissions.askAsync(Permissions.LOCATION);
 
-    //   setPermissions(true);
-    // }
-  
-
-    // useEffect(() => {
-    //   forRealGetPermissions();
-    // },[]);
-
-    // useEffect(() => {
-    //   getLocation();
-    // })
-
-   
     
 
 
     console.log('LOCATION', location);
     console.log('LATITUDE', lat);
     console.log('LONGITUDE', long);
+    console.log('URL', url);
 
 
   return (
     <View style={styles.container}>
       <Text>Mermaids and Unicorns</Text>
+      <Text>You're latitude and longitude is  </Text>
       <StatusBar style="auto" />
     </View>
   );
