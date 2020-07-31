@@ -26,7 +26,6 @@ export default function App() {
     const [location, setLocation] = useState({});
     const [lat, setLat] = useState();
     const [long, setLong] = useState();
-    const [url, setUrl] = useState();
     useEffect( () => {
        (async () => {
         let { status } = await Location.requestPermissionsAsync();
@@ -38,8 +37,6 @@ export default function App() {
         setLocation(location.coords);
         setLat(location.coords.latitude.toFixed(4));
         setLong(location.coords.longitude.toFixed(4));
-        let thisURl = await `http://hotline.whalemuseum.org/api.json?near=${lat},${long}&radius=1&limit=5`
-        setUrl( thisURL)
       })();
  
 
