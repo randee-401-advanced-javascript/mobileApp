@@ -14,8 +14,8 @@ export default class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      latitude: 0,
-      longitude: 0,
+      lat: 0,
+      lon: 0,
       error: null,
     };
   }
@@ -24,8 +24,8 @@ export default class App extends Component {
     navigator.geolocation.getCurrentPosition(
       (position) => {
         this.setState({
-          latitude: location.coords.latitude,
-          longitude: location.coords.longitude,
+          latitude: location.coords.lat,
+          longitude: location.coords.lon,
           error: null,
         });
       },
@@ -40,8 +40,8 @@ export default class App extends Component {
         <MapView
           style={styles.map}
           region={{
-            latitude: this.state.latitude,
-            longitude: this.state.longitude,
+            latitude: this.state.lat,
+            longitude: this.state.lon,
           }}
         >
           <Marker coordinate={this.state} />
