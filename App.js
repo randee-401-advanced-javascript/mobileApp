@@ -1,81 +1,163 @@
-import { StatusBar } from 'expo-status-bar';
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import React, { useState, useEffect, Component } from "react";
+import { Platform, StyleSheet, Text, View } from "react-native";
+import Footer from "./components/Footer";
+import * as Permissions from "expo-permissions";
 
-import * as Permissions from 'expo-permissions';
+import * as Location from "expo-location";
+import { disableExpoCliLogging } from "expo/build/logs/Logs";
+import axios from "axios";
+import MapView, { Marker } from "react-native-maps";
+import { render } from "react-dom";
 
-import * as Location from 'expo-location'
-import { disableExpoCliLogging } from 'expo/build/logs/Logs';
-import axios from 'axios';
+export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      latitude: 0,
+      longitude: 0,
+      error: null,
+    };
+  }
 
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        this.setState({
+          latitude: location.coords.latitude,
+          longitude: location.coords.longitude,
+          error: null,
+        });
+      },
+      (error) => this.setState({ error: error.messsage }),
+      { enableHighAccuracy: true, timeout: 2000, maximumAge: 2000 }
+    );
+  }
 
-// import './components/permissions'
-// import { useState } from 'react';
-
-
-
-
-
-
-
-
-
-export default function App() {
-
-    // const { permissions, setPermissions } = useState(false);
-    const [location, setLocation] = useState({});
-    const [lat, setLat] = useState();
-    const [long, setLong] = useState();
-    useEffect( () => {
-       (async () => {
-        let { status } = await Location.requestPermissionsAsync();
-        if (status !== 'granted') {
-          setErrorMsg('Permission to access location was denied');
-        }
-  
-        let location = await Location.getCurrentPositionAsync({});
-        setLocation(location.coords);
-        setLat(location.coords.latitude.toFixed(4));
-        setLong(location.coords.longitude.toFixed(4));
-      })();
- 
-
-    }, []);
-  
-    let text = 'Waiting..';
-    // if (errorMsg) {
-    //   text = errorMsg;
-    // } else 
-    if (location) {
-      text = JSON.stringify(location);
-    }
-
-
-    
-
-    
-
-
-    console.log('LOCATION', location);
-    console.log('LATITUDE', lat);
-    console.log('LONGITUDE', long);
-    console.log('URL', url);
-
-
-  return (
-    <View style={styles.container}>
-      <Text>Mermaids and Unicorns</Text>
-      <Text>You're latitude and longitude is  </Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+  render() {
+    return (
+      <View style={styles.container}>
+        <MapView
+          style={styles.map}
+          region={{
+            latitude: this.state.latitude,
+            longitude: this.state.longitude,
+          }}
+        >
+          <Marker coordinate={this.state} />
+        </MapView>
+      </View>
+    );
+    <Footer />;
+  }
 }
-
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    ...StyleSheet.absoluteFillObject,
+  },
+  map: {
+    ...StyleSheet.absoluteFillObject,
   },
 });
+
+// import { StatusBar } from "expo-status-bar";
+// import React, { useState, useEffect, Component } from "react";
+// import { Platform, StyleSheet, Text, View } from "react-native";
+
+// import * as Permissions from "expo-permissions";
+
+// import * as Location from "expo-location";
+// import { disableExpoCliLogging } from "expo/build/logs/Logs";
+// import axios from "axios";
+// import MapView, { Marker } from "react-native-maps";
+
+// // import './components/permissions'
+// // import { useState } from 'react';
+
+// export default class App extends Component {
+
+//   super(props) {
+
+//     this.satate = {
+//       lat: 0,
+//       lon: 0,
+//     };
+//   }
+
+//   componet
+
+// }
+
+// export default function App() {
+//   // const { permissions, setPermissions } = useState(false);
+//   const [location, setLocation] = useState({});
+//   const [lat, setLat] = useState();
+//   const [long, setLong] = useState();
+//   useEffect(() => {
+//     (async () => {
+//       let { status } = await Location.requestPermissionsAsync();
+//       if (status !== "granted") {
+//         setErrorMsg("Permission to access location was denied");
+//       }
+
+//       let location = await Location.getCurrentPositionAsync({});
+//       setLocation(location.coords);
+//       setLat(location.coords.latitude.toFixed(4));
+//       setLong(location.coords.longitude.toFixed(4));
+//     })();
+//   }, []);
+
+//   let text = "Waiting..";
+//   // if (errorMsg) {
+//   //   text = errorMsg;
+//   // } else
+//   if (location) {
+//     text = JSON.stringify(location);
+//   }
+
+//   console.log("LOCATION", location);
+//   console.log("LATITUDE", lat);
+//   console.log("LONGITUDE", long);
+//   console.log("URL", url);
+
+//     return (
+//       <View style={this.styles.container}>
+//         <MapView
+//           style={styles.map}
+//           region={{
+//             latitude: stateState(late),
+//             longitude: stateState(long),
+//           }}
+//         >
+//           <Marker coordinate={} />
+//         </MapView>
+//       </View>
+//     );
+//   }
+
+//   // return (
+//   //   <View style={styles.container}>
+//   //     <MapView>
+//   //       style={styles.map}
+//   //       <Text>Mermaids and Unicorns</Text>
+//   //       <Text>You're latitude and longitude is </Text>
+//   //       <StatusBar style="auto" />
+//   //     </MapView>
+//   //   </View>
+//   // );
+// }
+
+// const styles = StyleSheet.create({
+//   container: {
+//     ...StyleSheet.absoluteFillObject,
+//   },
+//   map: {
+//     ...StyleSheet.absoluteFillObject,
+//   },
+// });
+// // flex: 1,
+// // backgroundColor: "#fff",
+// // alignItems: "center",
+// // justifyContent: "center",
+// //   },
+// // });

@@ -17,11 +17,25 @@
     "react": "~16.11.0",
     "react-dom": "~16.11.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-38.0.2.tar.gz",
+    "react-native-maps": "^0.27.1",
     "react-native-web": "~0.11.7"
   },
   "devDependencies": {
     "@babel/core": "^7.8.6",
     "babel-preset-expo": "~8.1.0"
   },
-  "private": true
+  "private": true,
+  "name": "mobilewhaleapp",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/randee-401-advanced-javascript/mobileWhaleApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/randee-401-advanced-javascript/mobileWhaleApp/issues"
+  },
+  "homepage": "https://github.com/randee-401-advanced-javascript/mobileWhaleApp#readme",
+  "description": ""
 }
