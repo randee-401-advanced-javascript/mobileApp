@@ -60,20 +60,6 @@ const styles = StyleSheet.create({
   },
 });
 
-// import { StatusBar } from "expo-status-bar";
-// import React, { useState, useEffect, Component } from "react";
-// import { Platform, StyleSheet, Text, View } from "react-native";
-
-// import * as Permissions from "expo-permissions";
-
-// import * as Location from "expo-location";
-// import { disableExpoCliLogging } from "expo/build/logs/Logs";
-// import axios from "axios";
-// import MapView, { Marker } from "react-native-maps";
-
-// // import './components/permissions'
-// // import { useState } from 'react';
-
 // export default class App extends Component {
 
 //   super(props) {
@@ -119,45 +105,3 @@ const styles = StyleSheet.create({
 //   console.log("LATITUDE", lat);
 //   console.log("LONGITUDE", long);
 //   console.log("URL", url);
-
-//     return (
-//       <View style={this.styles.container}>
-//         <MapView
-//           style={styles.map}
-//           region={{
-//             latitude: stateState(late),
-//             longitude: stateState(long),
-//           }}
-//         >
-//           <Marker coordinate={} />
-//         </MapView>
-//       </View>
-//     );
-//   }
-
-//   // return (
-//   //   <View style={styles.container}>
-//   //     <MapView>
-//   //       style={styles.map}
-//   //       <Text>Mermaids and Unicorns</Text>
-//   //       <Text>You're latitude and longitude is </Text>
-//   //       <StatusBar style="auto" />
-//   //     </MapView>
-//   //   </View>
-//   // );
-// }
-
-// const styles = StyleSheet.create({
-//   container: {
-//     ...StyleSheet.absoluteFillObject,
-//   },
-//   map: {
-//     ...StyleSheet.absoluteFillObject,
-//   },
-// });
-// // flex: 1,
-// // backgroundColor: "#fff",
-// // alignItems: "center",
-// // justifyContent: "center",
-// //   },
-// // });
